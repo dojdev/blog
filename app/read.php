@@ -1,8 +1,8 @@
 <?php
 
-function read(){
+function read($postsDir){
 
-    $Posts = glob('posts/*');
+    $Posts = glob($postsDir . '/*');
 
     foreach($Posts as $post){
         echo basename($post) . " " . file_get_contents($post) . '<br>';
@@ -10,8 +10,8 @@ function read(){
 
 }
 
-read();
 
 'this is read file';
+
 
 
