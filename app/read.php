@@ -2,7 +2,7 @@
 
 function read(){
 
-    $Posts = glob('../posts/*');
+    $Posts = glob('posts/*');
 
     foreach($Posts as $post){
         echo basename($post) . " " . file_get_contents($post) . '<br>';

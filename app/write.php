@@ -9,3 +9,4 @@ $linkFull = $link . $dataSum;
 
 $a = readline();
 file_put_contents($linkFull, $a);
+
