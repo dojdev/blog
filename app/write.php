@@ -5,12 +5,12 @@ $dataDay = Date('d-m-y');
 $link = 'posts/';
 $linkFull = $link . $dataDay;
 
-while($a !== "exit" . PHP_EOL){
+while($a !== "exit"){
    $a = readline();
       if($a=='exit'){
          exit();
       } else{
-         file_put_contents($linkFull, $a . ' ', FILE_APPEND);
+         file_put_contents($linkFull, $a, FILE_APPEND);
       }
 }
 exit();
