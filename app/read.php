@@ -10,8 +10,4 @@ function read($postsDir){
 
 }
 
-
-'this is read file';
-
-
-
+read('../posts');
