@@ -14,8 +14,8 @@ function read($postsDir){
                           <span class='single-post__date'>" . basename($post) . "</span>
                       </p>
                   <hr>
-                      <p class='single-post__content'>"
-                        . file_get_contents($post) . "
+                      <p class='single-post__content'>
+                      " . file_get_contents($post) . "
                       </p>
                       <p>&nbsp;</p>
                   </div>
