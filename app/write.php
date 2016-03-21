@@ -10,7 +10,7 @@ while($a !== "exit"){
       if($a=='exit'){
          exit();
       } else{
-         file_put_contents($linkFull, ' ' . $a . '<br/>', FILE_APPEND);
+         file_put_contents($linkFull, $a . '<br/>' . "\r\n", FILE_APPEND);
       }
 }
 exit();
