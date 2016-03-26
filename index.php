@@ -1,4 +1,3 @@
-<?php require_once 'app/read.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +7,10 @@
 </head>
 <body>
 
-    <div class="container">
-        <?php read('posts'); ?>
-    </div>
+<?php
+    require_once 'app/form.php';
+    require_once 'app/db.php';
+?>
 
 </body>
 </html>

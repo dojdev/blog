@@ -1,3 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
 <?php
 
 function read($postsDir){
@@ -15,7 +23,7 @@ function read($postsDir){
                       </p>
                   <hr>
                       <p class='single-post__content'>
-                      " . file_get_contents($post) . "
+                        " . file_get_contents($post) . "
                       </p>
                       <p>&nbsp;</p>
                   </div>
@@ -26,3 +34,7 @@ function read($postsDir){
 }
 
 read('../posts');
+?>
+
+</body>
+</html>
