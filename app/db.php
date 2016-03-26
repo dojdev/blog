@@ -14,8 +14,8 @@ echo '<br><br>';
 
     foreach($content as $value){
 
-        echo "<div class='col-xs-6 alert alert-success' style='min-height: 180px;'>";
-        echo '<b>' . $value['title'] . '</b><br>';
+        echo "<div class='col-xs-6 post-item'>";
+        echo '<h1 class="post-item__title">' . $value['title'] . '</h1><br>';
         echo  $value['content']      . '<br>';
         echo 'Дата: '                . $value['date']     . '<br>';
         echo 'Автор: '               . $value['user_id']  . '<br>';
