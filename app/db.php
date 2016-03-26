@@ -1,14 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>DB</title>
-</head>
-<body>
+<?php
 
-<div class="container text-center">
-    <?php
-    echo '<br><br>';
+echo '<br><br>';
 
     $pdo = new PDO(
         "mysql:host=localhost;dbname=blog;charset=utf8","root","vagrant"
@@ -33,9 +25,3 @@
     if(!empty($_POST['title']) && !empty($_POST['content'])){
         $write = $pdo->query("INSERT INTO `posts` SET `title`='{$_POST['title']}', `content`='{$_POST['content']}', `date`=NOW(), `user_id`=0");
     }
-
-    ?>
-</div>
-
-</body>
-</html>
