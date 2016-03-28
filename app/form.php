@@ -1,4 +1,3 @@
-
             <form method="POST" class="form-group" id="ajaxform">
                 <input type="text" name="title" class="form-control" placeholder="Введите заголовок" autocomplete="off">
                 <br>
@@ -7,11 +6,10 @@
                 <input type="submit" class="btn btn-success">
             </form>
 
-
-                <?php if (!empty($_POST['title']) && !empty($_POST['content'])){ ?>
+            <?php if (!empty($_POST['title']) && !empty($_POST['content'])){ ?>
                     <div class='alert alert-success'>
                         <?php print_r($_POST); ?>
                     </div> <?php
-                } ?>
+            } ?>
 
 
