@@ -13,7 +13,7 @@ $('form').on('submit', function(e){
                     url: "index.php",
                     cache: false,
                     success: function(){
-                        $('form').html('Пост отправлен');
+                        $('form').html("Пост отправлен");
 
                         setTimeout(function(){
                             location.reload();
