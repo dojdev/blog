@@ -1,12 +1,13 @@
-<?php require_once 'templates/header.php'; ?>
+<?php require_once 'templates/header.php';
+
+?>
 
         <section class="blog-stuff text-center">
 
             <div class="container">
 
-
                 <h1 class="blog-title">Simple Blog</h1>
-
+                    <div class="pull-left"><a class="btn btn-danger" href="app/auth.php">autorize</a></div>
                     <div class="pull-right" style="color: #fff;">
                         <a class="btn btn-link"  style="color: inherit;" href="/">grid</a>|
                         <a class="btn btn-link"  style="color: inherit;" href="/table.php">table</a>

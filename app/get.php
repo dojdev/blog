@@ -7,12 +7,13 @@
 <body>
 <?php
 
-foreach($_GET as $key){
-    echo $key . '<br/><br/>';
+var_dump($_GET);
+
+foreach($_GET as $key => $value){
+    echo '<br><br>utm <b> ' . $key . ' </b>: ' . $value;
 }
 
-print_r($_GET);
-
 ?>
+
 </body>
 </html>

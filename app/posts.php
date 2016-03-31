@@ -13,7 +13,7 @@ echo '<br><br>';
     foreach($content as $value){
 
         echo "<div class='col-xs-6 post-item'>";
-        echo '<h1 class="post-item__title">' . $value['title']    . '</h1><br>';
+        echo '<h1 class="post-item__title">' . htmlspecialchars($value['title'])  . '</h1><br>';
         echo  $value['content']              . '<br>';
         echo 'Дата: '                        . $value['date']     . '<br>';
         echo 'Автор: '                       . $value['user_id']  . '<br>'; $post_id =  $value['id'];
@@ -26,5 +26,15 @@ echo '<br><br>';
     };
 
     if(!empty($_POST['title']) && !empty($_POST['content'])){
-        $write = $pdo->query("INSERT INTO `posts` SET `title`='{$_POST['title']}', `content`='{$_POST['content']}', `date`=NOW(), `user_id`=0");
+
+       $write = $pdo->query("INSERT INTO `posts` SET `title`='{$_POST['title']}', `content`='{$_POST['content']}', `date`=NOW(), `user_id`=0");
+
+//        $write = $pdo->prepare("INSERT INTO `posts` SET `title`=:title, `content`=:content, `date`=NOW(), `user_id`=0");
+//        $write->execute([
+//            ':title' => $_POST['title'],
+//            ':content' => $_POST['content']
+//        ]);
+
     }
+
+
