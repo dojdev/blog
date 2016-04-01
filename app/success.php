@@ -4,7 +4,7 @@ session_start();
 
 if(!empty($_SESSION['user'])){
     echo '<div class="alert alert-success">Login Success ';
-    echo 'Hey <b> ' . $_SESSION['user']['login'] . '</b> your password <b>' . $_SESSION['user']['password'] . '</b><br>' . 'Have a Good Day <b>' . Date(" d M Y ") . '</b></div>';
+    echo 'Hey <b> ' . $_SESSION['user']['login'] . '</b> your password hash <b>' . $_SESSION['user']['password'] . '</b><br>' . 'Have a Good Day <b>' . Date(" d M Y ") . '</b></div>';
 //    header('location: /account.php');
 
     if($_SESSION['user']['login']==='admin'){
