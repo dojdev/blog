@@ -1,7 +1,22 @@
 <style>table{ background-color: rgba(0,0,0,.5) !important;  }</style>
 <?php
+session_start();
 
-require_once 'app/connect.php';
+if(!empty($_SESSION['user'])){
+    echo '<div class="pull-right">'. $_SESSION['user']['login'] . "<a style='color: #fff;' href='?action=exit'>[ Выйти ]</a></div>";
+};
+
+if(!empty($_GET['action'])){
+
+    session_destroy();
+    header('location: /');
+
+}
+
+if($_SESSION['user']['login']=='admin'){
+    require_once 'app/connect.php';
+}
+
 require_once 'templates/header.php';
 
 $statement = $pdo->query(
@@ -9,17 +24,15 @@ $statement = $pdo->query(
 );
 
 $content = $statement->fetchAll(PDO::FETCH_ASSOC );
-$url = substr($_SERVER['REQUEST_URI'], 1);
+$url = substr($_SERVER['REQUEST_URI'], 1); ?>
 
-echo '<div class="container">
-
-                <h1 class="blog-title text-center">Simple Blog</h1>
-
-                <div class="pull-right" style="color: #fff;">
-                    <a class="btn btn-link"  style="color: inherit;" href="/">grid</a>|
-                    <a class="btn btn-link"  style="color: inherit;" href="/table.php">table</a>
-                </div>
-
+<div class="form">
+    <br><br>
+    <div class="container">
+        <?php require_once 'app/form.php'; ?>
+    </div>
+</div>
+<?php echo '<div class="container">
         <table class="table table-condensed">
             <tr>
                 <td><b>Дата</b></td>
@@ -65,9 +78,7 @@ foreach($content as $value){
 
 echo '</table></div>';
 
-if(!empty($_POST['title']) && !empty($_POST['content'])){
-    $write = $pdo->query("INSERT INTO `posts` SET `title`='{$_POST['title']}', `content`='{$_POST['content']}', `date`=NOW(), `user_id`=0");
-} ?>
+ ?>
 
 <?php require_once 'templates/footer.php'; ?>
 

@@ -10,6 +10,19 @@
                     <div class='alert alert-success'>
                         <?php print_r($_POST); ?>
                     </div> <?php
-            } ?>
+            }
+            if(!empty($_POST['title']) && !empty($_POST['content'])){
+
+//       $write = $pdo->query("INSERT INTO `posts` SET `title`='{$_POST['title']}', `content`='{$_POST['content']}', `date`=NOW(), `user_id`=0");
+
+                $write = $pdo->prepare("INSERT INTO `posts` SET `title`=:title, `content`=:content, `date`=NOW(), `user_id`=0");
+                $write->execute([
+                    ':title' => $_POST['title'],
+                    ':content' => $_POST['content']
+                ]);
+            }
+
+            ?>
+
 
 

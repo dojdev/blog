@@ -1,4 +1,4 @@
-$('form').on('submit', function(e){
+$('#ajaxform').on('submit', function(e){
     e.preventDefault();
 
     $.ajax({
@@ -13,7 +13,7 @@ $('form').on('submit', function(e){
                     url: "index.php",
                     cache: false,
                     success: function(){
-                        $('form').html("Пост отправлен");
+                        $('#ajaxform').html("Пост отправлен");
 
                         setTimeout(function(){
                             location.reload();
@@ -24,3 +24,5 @@ $('form').on('submit', function(e){
         }
     });
 });
+
+

@@ -25,7 +25,7 @@ textarea,
     color: #ffffff !important;
 }
 .post-item{
-    border: 1px solid #eeeeee;
+    border: 1px dashed #4cae4c;
     padding: 20px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

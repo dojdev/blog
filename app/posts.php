@@ -18,23 +18,13 @@ echo '<br><br>';
         echo 'Дата: '                        . $value['date']     . '<br>';
         echo 'Автор: '                       . $value['user_id']  . '<br>'; $post_id =  $value['id'];
 
-        if($post_id > 4) {
-            echo "<a href='app/del.php?id=$post_id' style='color: #f44;'>[ Удалить пост ]</a>";
-        }
+//        if($post_id > 4) {
+//            echo "<a href='app/del.php?id=$post_id' style='color: #f44;'>[ Удалить пост ]</a>";
+//        }
 
         echo  '<br></div>';
     };
 
-    if(!empty($_POST['title']) && !empty($_POST['content'])){
 
-       $write = $pdo->query("INSERT INTO `posts` SET `title`='{$_POST['title']}', `content`='{$_POST['content']}', `date`=NOW(), `user_id`=0");
-
-//        $write = $pdo->prepare("INSERT INTO `posts` SET `title`=:title, `content`=:content, `date`=NOW(), `user_id`=0");
-//        $write->execute([
-//            ':title' => $_POST['title'],
-//            ':content' => $_POST['content']
-//        ]);
-
-    }
 
 

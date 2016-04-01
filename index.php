@@ -7,15 +7,17 @@
             <div class="container">
 
                 <h1 class="blog-title">Simple Blog</h1>
-                    <div class="pull-left"><a class="btn btn-danger" href="app/auth.php">autorize</a></div>
-                    <div class="pull-right" style="color: #fff;">
-                        <a class="btn btn-link"  style="color: inherit;" href="/">grid</a>|
-                        <a class="btn btn-link"  style="color: inherit;" href="/table.php">table</a>
-                    </div>
 
-                <?php require_once 'app/form.php'; require_once 'app/posts.php'; ?>
+
+                <article class="blog-content js-load"> <?php require_once 'app/auth.php'; echo '<br> </div>'; ?>
+
+                    <?php if($loginUser){ header('location: app/success.php'); } ?>
+
+                </article>
 
             </div>
         </section>
 
 <?php require_once 'templates/footer.php'; ?>
+
+

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Мар 31 2016 г., 03:16
+-- Время создания: Апр 01 2016 г., 05:17
 -- Версия сервера: 5.5.47-0ubuntu0.14.04.1
 -- Версия PHP: 5.5.9-1ubuntu4.14
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `date` datetime DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=211 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=237 ;
 
 --
 -- Дамп данных таблицы `posts`
@@ -77,7 +77,33 @@ INSERT INTO `posts` (`id`, `title`, `content`, `date`, `user_id`) VALUES
 (207, 'Введите заголовок', 'Введите текст поста', '2016-03-30 22:51:29', 0),
 (208, 'Введите заголовок', 'Введите текст поста', '2016-03-30 22:51:38', 0),
 (209, 'Введите заголовок', 'Введите текст поста', '2016-03-30 22:51:42', 0),
-(210, '2222', '333333', '2016-03-30 22:52:27', 0);
+(210, '2222', '333333', '2016-03-30 22:52:27', 0),
+(211, 'fsdfsd', 'fdsfsdf', '2016-04-01 04:53:34', 0),
+(212, 'fsdfdsf', 'dfdsfdsf', '2016-04-01 04:53:53', 0),
+(213, '4444', '44rrrr', '2016-04-01 04:53:57', 0),
+(214, 'fsdfsf', 'fsdfdsftratrararrlalalalalal', '2016-04-01 04:55:36', 0),
+(215, 'fsdfds', 'fdsfdsf', '2016-04-01 04:57:27', 0),
+(216, 'fsdfds', 'fdsfdsf', '2016-04-01 04:57:27', 0),
+(217, 'lalalalalal', 'tratatatat', '2016-04-01 04:57:34', 0),
+(218, 'lalalalalal', 'tratatatat', '2016-04-01 04:57:34', 0),
+(219, 'ololololo', 'testo ok', '2016-04-01 04:57:45', 0),
+(220, 'ololololo', 'testo ok', '2016-04-01 04:57:45', 0),
+(221, '1111', '2222 test', '2016-04-01 04:57:56', 0),
+(222, '1111', '2222 test', '2016-04-01 04:57:56', 0),
+(223, 'fdsfsd8888', 'fdsf4455556666', '2016-04-01 05:01:14', 0),
+(224, 'fdsfsd8888', 'fdsf4455556666', '2016-04-01 05:01:14', 0),
+(225, 'fdsfsd8888', 'fdsf4455556666', '2016-04-01 05:01:17', 0),
+(226, 'fdsfsd8888', 'fdsf4455556666', '2016-04-01 05:01:17', 0),
+(227, 'fdsfsd8888', 'fdsf4455556666', '2016-04-01 05:01:37', 0),
+(228, 'test ok', 'single text', '2016-04-01 05:01:47', 0),
+(229, 'test ok', 'single text', '2016-04-01 05:01:53', 0),
+(230, 'test ok', 'single text', '2016-04-01 05:02:27', 0),
+(231, 'test ok', 'single text', '2016-04-01 05:06:02', 0),
+(232, 'test ok', 'single text', '2016-04-01 05:06:17', 0),
+(233, 'test ok', 'single text', '2016-04-01 05:07:06', 0),
+(234, 'test ok', 'single text', '2016-04-01 05:07:27', 0),
+(235, 'тестыч', 'все норм', '2016-04-01 05:07:42', 0),
+(236, 'fsdf', 'sfsdfs', '2016-04-01 05:17:07', 0);
 
 -- --------------------------------------------------------
 
@@ -90,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `login` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Дамп данных таблицы `users`
@@ -98,7 +124,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `login`, `password`) VALUES
 (1, 'author1', '81dc9bdb52d04dc20036dbd8313ed055'),
-(2, 'author2', '81dc9bdb52d04dc20036dbd8313ed05335');
+(2, 'author2', '81dc9bdb52d04dc20036dbd8313ed05335'),
+(4, 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
