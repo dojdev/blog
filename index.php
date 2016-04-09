@@ -63,8 +63,7 @@ if(!empty($_SESSION['user'])){
             'content' => htmlspecialchars($value['content']),
             'date'    => $value['date'],
             'author'  => $value['user_id'],
-            'post_id' => $value['id'],
-            'del'     => '<a class="btn btn-danger" href="app/del.php?id=' . $value['id'] . '">Удалить</a>',
+            'post_id' => $value['id']
         ]);
     };
 }

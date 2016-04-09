@@ -6,6 +6,6 @@
         <p>Дата:        <?= $date    ?> </p>
         <p>Автор:       <?= $author  ?> </p>
         <p>Номер поста: <?= $post_id ?> </p>
-        <p>             <?= $del     ?> </p>
+        <a class="btn btn-danger" href="app/del.php?id=<?= $post_id ?>">Удалить</a>
     </div>
 </div>
