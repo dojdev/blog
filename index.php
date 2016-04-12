@@ -15,7 +15,7 @@ if(!empty($_SESSION['user'])){
         'login' => $_SESSION['user']['login']
     ]);
 
-    if(!empty($_REQUEST['exit']) && $_REQUEST['exit']=='exit'){
+    if(!empty($_REQUEST['session']) && $_REQUEST['session']=='exit'){
         session_destroy();
         header('location: /');
     }
