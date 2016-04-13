@@ -15,9 +15,9 @@ class Auth
         echo \Blog\Functions\template('templates/loginForm.php');
         if (!empty($_POST['login']) && !empty($_POST['password'])) {
             $login = trim($_POST['login']);
-            $conn = $this->pdo;
+
             $password = md5(trim($_POST['password']));
-            $users = $conn->prepare(
+            $users = $this->pdo->prepare(
                 "SELECT * FROM `users` WHERE `login`=:login AND `password`=:password");
             $users->execute([
                 ':login' => $_POST['login'],
