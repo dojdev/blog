@@ -9,6 +9,14 @@ class Posts{
         $this->pdo = $pdo;
     }
 
+    public function add_post(){
+        echo \Blog\Functions\template('templates/addForm.php');
+
+        if (!empty($_POST['title']) && !empty($_POST['content'])) {
+            $write = $this->pdo->query("INSERT INTO `posts` SET `title`='{$_POST['title']}', `content`='{$_POST['content']}', `date`=NOW(), `user_id`=0");
+        }
+    }
+
     public function posts(){
         if (empty($_REQUEST['login']) && empty($_SESSION['user'])) {
             header('location: /?action=auth');
@@ -17,12 +25,6 @@ class Posts{
         echo \Blog\Functions\template('templates/exit.php', [
             'login' => $_SESSION['user']['login']
         ]);
-
-        echo \Blog\Functions\template('templates/addForm.php');
-
-        if (!empty($_POST['title']) && !empty($_POST['content'])) {
-            $write = $this->pdo->query("INSERT INTO `posts` SET `title`='{$_POST['title']}', `content`='{$_POST['content']}', `date`=NOW(), `user_id`=0");
-        }
 
         $statement = $this->pdo->query(
             "SELECT * FROM posts ORDER BY `date` DESC"
@@ -39,5 +41,6 @@ class Posts{
             ]);
         };
     }
+
 }
 

@@ -11,6 +11,7 @@ require_once 'app/functions.php';
 require_once 'classes/auth.php';
 require_once 'classes/posts.php';
 require_once 'classes/delete.php';
+require_once 'classes/exit.php';
 
 echo Functions\template('templates/header.php');
 
@@ -31,7 +32,9 @@ switch ($action) {
 
     case 'posts':
             $posts = new Classes\Posts($connect);
+            $posts->add_post();
             $posts->posts();
+
         break;
 
     case 'del':
@@ -40,7 +43,7 @@ switch ($action) {
         break;
 
     case 'exit':
-        session_destroy();
-        header('location: /');
+            $exit = new Classes\Bye();
+            $exit->bye();
         break;
 }
