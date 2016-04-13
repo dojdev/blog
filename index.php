@@ -10,6 +10,7 @@ session_start();
 require_once 'app/functions.php';
 require_once 'classes/auth.php';
 require_once 'classes/posts.php';
+require_once 'classes/delete.php';
 
 echo Functions\template('templates/header.php');
 
@@ -24,23 +25,18 @@ if (empty($_REQUEST['login']) && empty($_SESSION['user'])) {
 
 switch ($action) {
     case 'auth':
-
-        $auth = new Classes\Auth($connect);
-        $auth->auth();
-
+            $auth = new Classes\Auth($connect);
+            $auth->auth();
         break;
 
     case 'posts':
-
-        $posts = new Classes\Posts($connect);
-        $posts->posts();
-
+            $posts = new Classes\Posts($connect);
+            $posts->posts();
         break;
 
     case 'del':
-        $id = trim($_GET["id"]);
-        $delete = $connect->query("delete from posts WHERE `id`=$id;");
-        header('location: /?action=posts');
+            $delete = new Classes\Delete($connect);
+            $delete->delete();
         break;
 
     case 'exit':
