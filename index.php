@@ -47,6 +47,13 @@ switch ($action) {
         echo template('templates/exit.php', [
             'login' => $_SESSION['user']['login']
         ]);
+
+        echo template('templates/addForm.php');
+
+        if(!empty($_POST['title']) && !empty($_POST['content'])){
+            $write = $pdo->query("INSERT INTO `posts` SET `title`='{$_POST['title']}', `content`='{$_POST['content']}', `date`=NOW(), `user_id`=0");
+        }
+
         $statement = $pdo->query(
             "SELECT * FROM posts ORDER BY `date` DESC"
         );
