@@ -1,12 +1,18 @@
-<?php
+<?php namespace Blog;
+
+use Blog\Functions;
+use Blog\Classes;
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();
-require_once 'app/connect.php';
-require_once 'app/functions.php';
-echo template('templates/header.php');
 
-var_dump($_GET);
+require_once 'app/functions.php';
+require_once 'classes/auth.php';
+echo Functions\template('templates/header.php');
+
+$connect = Functions\connection(['host' => 'localhost', 'dbname' => 'blog', 'user' => 'root', 'password' => 'vagrant', 'encoding' => 'utf8']);
+//var_dump($_GET);
 
 $action = empty($_REQUEST['action']) ? 'auth' : $_REQUEST['action'];
 
@@ -16,26 +22,10 @@ if (empty($_REQUEST['login']) && empty($_SESSION['user'])) {
 
 switch ($action) {
     case 'auth':
-        echo template('templates/loginForm.php');
-        if (!empty($_POST['login']) && !empty($_POST['password'])) {
-            $login = trim($_POST['login']);
-            $password = md5(trim($_POST['password']));
-            $users = $pdo->prepare(
-                "SELECT * FROM `users` WHERE `login`=:login AND `password`=:password");
-            $users->execute([
-                ':login' => $_POST['login'],
-                ':password' => $password
-            ]);
-            $loginUser = $users->fetch();
-        }
 
-        if (!empty($loginUser)) {
-            $_SESSION['user'] = $loginUser;
-            echo template('templates/welcomeMessage.php', [
-                'login' => $_SESSION['user']['login']
-            ]);
-            header('location: /?action=posts');
-        }
+        $a = new Classes\auth($connect);
+        $a->auth();
+
         break;
 
     case 'posts':
@@ -44,23 +34,23 @@ switch ($action) {
             header('location: /?action=auth');
         }
 
-        echo template('templates/exit.php', [
+        echo \Blog\Functions\template('templates/exit.php', [
             'login' => $_SESSION['user']['login']
         ]);
 
-        echo template('templates/addForm.php');
+        echo \Blog\Functions\template('templates/addForm.php');
 
-        if(!empty($_POST['title']) && !empty($_POST['content'])){
-            $write = $pdo->query("INSERT INTO `posts` SET `title`='{$_POST['title']}', `content`='{$_POST['content']}', `date`=NOW(), `user_id`=0");
+        if (!empty($_POST['title']) && !empty($_POST['content'])) {
+            $write = $connect->query("INSERT INTO `posts` SET `title`='{$_POST['title']}', `content`='{$_POST['content']}', `date`=NOW(), `user_id`=0");
         }
 
-        $statement = $pdo->query(
+        $statement = $connect->query(
             "SELECT * FROM posts ORDER BY `date` DESC"
         );
 
-        $content = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $content = $statement->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($content as $value) {
-            echo template('templates/posts.php', [
+            echo \Blog\Functions\template('templates/posts.php', [
                 'title' => htmlspecialchars($value['title']),
                 'content' => htmlspecialchars($value['content']),
                 'date' => $value['date'],
@@ -72,7 +62,7 @@ switch ($action) {
 
     case 'del':
         $id = trim($_GET["id"]);
-        $delete = $pdo->query("delete from posts WHERE `id`=$id;");
+        $delete = $connect->query("delete from posts WHERE `id`=$id;");
         header('location: /?action=posts');
         break;
 
