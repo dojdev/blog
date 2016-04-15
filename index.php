@@ -6,6 +6,7 @@ use Blog\Classes;
 require_once 'app/functions.php';
 require_once 'classes/auth.php';
 require_once 'classes/posts.php';
+require_once 'classes/pagination.php';
 require_once 'classes/single.php';
 require_once 'classes/delete.php';
 require_once 'classes/exit.php';
@@ -37,7 +38,8 @@ switch ($action) {
             $posts = new Classes\Posts($connect);
             $posts->bye();
             $posts->add_post();
-            $posts->posts();
+            $posts = new Classes\Pagination($connect);
+            $posts->pagination();
         break;
 
     case 'del':
