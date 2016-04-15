@@ -1,6 +1,6 @@
 <div class="container text-center">
     <div class='col-xs-12 post-item'>
-        <a href="/?action=single&id=<?= $post_id ?>" class="post-item__title">
+        <a style="color: #fff;text-transform: uppercase;" href="/?action=single&id=<?= $post_id ?>" class="post-item__title">
                         <?= $title   ?> </a>
         <p>             <?= $content ?> </p>
         <p>Дата:        <?= $date    ?> </p>

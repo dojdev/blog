@@ -46,8 +46,11 @@ switch ($action) {
         break;
 
     case 'single':
+            $single = new Classes\Posts($connect);
+            $single->bye();
             $single = new Classes\Single($connect);
             $single->single();
+            $single->edit();
         break;
 
     case 'exit':
