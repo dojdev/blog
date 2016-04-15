@@ -1,7 +1,7 @@
 <div class="container text-center">
     <div class='col-xs-12 post-item'>
-        <h1 class="post-item__title">
-                        <?= $title   ?> </h1>
+        <a href="/?action=single&id=<?= $post_id ?>" class="post-item__title">
+                        <?= $title   ?> </a>
         <p>             <?= $content ?> </p>
         <p>Дата:        <?= $date    ?> </p>
         <p>Автор:       <?= $author  ?> </p>
@@ -9,3 +9,4 @@
         <a class="btn btn-danger" href="/?action=del&id=<?= $post_id ?>">Удалить</a>
     </div>
 </div>
+

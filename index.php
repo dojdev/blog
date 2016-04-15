@@ -1,17 +1,20 @@
-<?php namespace Blog;
+<?php
 
+namespace Blog;
 use Blog\Functions;
 use Blog\Classes;
+require_once 'app/functions.php';
+require_once 'classes/auth.php';
+require_once 'classes/posts.php';
+require_once 'classes/single.php';
+require_once 'classes/delete.php';
+require_once 'classes/exit.php';
+
+//require 'vendor/autoload.php';
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();
-
-require_once 'app/functions.php';
-require_once 'classes/auth.php';
-require_once 'classes/posts.php';
-require_once 'classes/delete.php';
-require_once 'classes/exit.php';
 
 echo Functions\template('templates/header.php');
 
@@ -32,14 +35,19 @@ switch ($action) {
 
     case 'posts':
             $posts = new Classes\Posts($connect);
+            $posts->bye();
             $posts->add_post();
             $posts->posts();
-
         break;
 
     case 'del':
             $delete = new Classes\Delete($connect);
             $delete->delete();
+        break;
+
+    case 'single':
+            $single = new Classes\Single($connect);
+            $single->single();
         break;
 
     case 'exit':

@@ -22,10 +22,6 @@ class Posts{
             header('location: /?action=auth');
         }
 
-        echo \Blog\Functions\template('templates/exit.php', [
-            'login' => $_SESSION['user']['login']
-        ]);
-
         $statement = $this->pdo->query(
             "SELECT * FROM posts ORDER BY `date` DESC"
         );
@@ -40,6 +36,12 @@ class Posts{
                 'post_id' => $value['id']
             ]);
         };
+    }
+
+    public function bye(){
+        echo \Blog\Functions\template('templates/exit.php', [
+            'login' => $_SESSION['user']['login']
+        ]);
     }
 
 }
