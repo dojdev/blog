@@ -8,6 +8,10 @@ class Delete{
         $this->pdo = $pdo;
     }
 
+    public function handler(){
+        $this->delete();
+    }
+
     public function delete()
     {
         $id = trim($_GET["id"]);

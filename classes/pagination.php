@@ -54,14 +54,5 @@ class Pagination
             ]);
         };
 
-
-      if( isset($page) ) {
-          unset( $page );
-      }
-
-      for( $i = 0; $i < $num_pages; $i++) {
-          $pagesArr[$i+1] = $i * $per_page;
-      }
-
     }
 }

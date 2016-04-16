@@ -13,41 +13,15 @@ echo Functions\template('templates/header.php');
 $connect = Functions\connection(['host' => 'localhost', 'dbname' => 'blog', 'user' => 'root', 'password' => 'vagrant', 'encoding' => 'utf8']);
 //var_dump($_GET);
 
-$action = empty($_REQUEST['action']) ? 'auth' : $_REQUEST['action'];
+$action = empty($_GET['action']) ? 'auth' : $_GET['action'];
 
-if (empty($_REQUEST['login']) && empty($_SESSION['user'])) {
-    $action = 'auth';
-}
+$routes = [
+    'auth' => '\Blog\Classes\Auth',
+    'posts' => '\Blog\Classes\Posts',
+    'del' => '\Blog\Classes\Delete',
+    'single' => '\Blog\Classes\Single',
+    'exit' => '\Blog\Classes\Bye'
+];
 
-switch ($action) {
-    case 'auth':
-            $auth = new Classes\Auth($connect);
-            $auth->auth();
-        break;
-
-    case 'posts':
-            $posts = new Classes\Posts($connect);
-            $posts->bye();
-            $posts->add_post();
-            $posts = new Classes\Pagination($connect);
-            $posts->pagination();
-        break;
-
-    case 'del':
-            $delete = new Classes\Delete($connect);
-            $delete->delete();
-        break;
-
-    case 'single':
-            $single = new Classes\Posts($connect);
-            $single->bye();
-            $single = new Classes\Single($connect);
-            $single->single();
-            $single->edit();
-        break;
-
-    case 'exit':
-            $exit = new Classes\Bye();
-            $exit->bye();
-        break;
-}
+$router = new Classes\Router($connect, $action, $routes);
+$router->handler();

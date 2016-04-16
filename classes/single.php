@@ -1,6 +1,6 @@
 <?php namespace Blog\Classes;
 
-class Single
+class Single extends Controller
 {
     private $pdo;
 
@@ -9,7 +9,7 @@ class Single
         $this->pdo = $pdo;
     }
 
-    public function single(){
+    public function getSingle(){
 
         $id = trim($_GET["id"]);
 
@@ -34,14 +34,16 @@ class Single
                 'post_id' => $value['id']
             ]);
 
-        };
+        }
+
     }
 
-    public function edit(){
+    public function postSingle(){
         if (!empty($_POST['title']) && !empty($_POST['content'])) {
             $id = trim($_GET["id"]);
             $edit = $this->pdo->query("UPDATE `posts` SET `title`='{$_POST['title']}', `content`='{$_POST['content']}' WHERE `id`=$id");
             header('location: /?action=single&id='.$id);
         }
     }
+
 }

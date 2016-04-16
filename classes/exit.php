@@ -1,9 +1,9 @@
 <?php namespace Blog\Classes;
 
-class Bye{
-
+class Bye extends Controller
+{
     public function bye(){
         session_destroy();
-        header('location: /');
+        header('location: /?action=auth');
     }
 }
