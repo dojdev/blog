@@ -16,7 +16,7 @@ class Pagination
 
         $count = $pagin->fetch(\PDO::FETCH_NUM);
         $total_rows=$count[0];
-        $per_page=2;
+        $per_page=10;
 
         if (isset($_GET['page'])) $page=($_GET['page']-1); else $page=0;
         $start=abs($page*$per_page);
@@ -45,7 +45,7 @@ class Pagination
         $content = $statement->fetchAll(\PDO::FETCH_ASSOC );
         $url = substr($_SERVER['REQUEST_URI'], 1);
         foreach ($content as $value) {
-            echo \Blog\Functions\template('templates/posts.php', [
+            echo \Blog\Functions\template('templates/Posts.php', [
                 'title' => htmlspecialchars($value['title']),
                 'content' => htmlspecialchars($value['content']),
                 'date' => $value['date'],

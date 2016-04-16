@@ -26,7 +26,7 @@ class Single
                 'post_id' => $value['id']
             ]);
 
-            echo \Blog\Functions\template('templates/posts.php', [
+            echo \Blog\Functions\template('templates/Posts.php', [
                 'title' => htmlspecialchars($value['title']),
                 'content' => htmlspecialchars($value['content']),
                 'date' => $value['date'],

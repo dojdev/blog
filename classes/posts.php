@@ -17,27 +17,6 @@ class Posts{
         }
     }
 
-    public function posts(){
-        if (empty($_REQUEST['login']) && empty($_SESSION['user'])) {
-            header('location: /?action=auth');
-        }
-
-        $statement = $this->pdo->query(
-            "SELECT * FROM posts ORDER BY `date` DESC"
-        );
-
-        $content = $statement->fetchAll(\PDO::FETCH_ASSOC);
-        foreach ($content as $value) {
-            echo \Blog\Functions\template('templates/posts.php', [
-                'title' => htmlspecialchars($value['title']),
-                'content' => htmlspecialchars($value['content']),
-                'date' => $value['date'],
-                'author' => $value['user_id'],
-                'post_id' => $value['id']
-            ]);
-        };
-    }
-
     public function bye(){
         echo \Blog\Functions\template('templates/exit.php', [
             'login' => $_SESSION['user']['login']

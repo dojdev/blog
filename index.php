@@ -1,17 +1,8 @@
 <?php
 
 namespace Blog;
-use Blog\Functions;
-use Blog\Classes;
-require_once 'app/functions.php';
-require_once 'classes/auth.php';
-require_once 'classes/posts.php';
-require_once 'classes/pagination.php';
-require_once 'classes/single.php';
-require_once 'classes/delete.php';
-require_once 'classes/exit.php';
 
-//require 'vendor/autoload.php';
+require 'vendor/autoload.php';
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
