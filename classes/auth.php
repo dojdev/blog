@@ -30,7 +30,7 @@ class Auth extends Controller
 
 
             $login = !empty($_POST['login']) ? trim($_POST['login']) : null;
-            $password = !empty($_POST['password']) ? md5($_POST['password']) : null;
+            $password = !empty($_POST['password']) ? md5(trim($_POST['password'])) : null;
 
             if (!empty($login) && !empty($password)){
 

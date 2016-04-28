@@ -6,6 +6,10 @@
 
 .vagrant/
 
+.config/
+
+.local/
+
 .viminfo
 
 .mysql_history
