@@ -1,5 +1,10 @@
-<br>
+
 <div class="container">
+    <div class="pull-right">
+        <a style='color: #fff;' href='?action=exit'><?= $_SESSION['user']['login'] ?> [ Выйти ]</a>
+    </div>
+    <br>
+    <br>
     <form method="POST" class="form-group" id="ajaxform">
         <input type="text" name="title" class="form-control" placeholder="Введите заголовок" autocomplete="off">
         <br>

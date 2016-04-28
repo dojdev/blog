@@ -13,14 +13,12 @@ $connect = Functions\connection(['host' => 'localhost', 'dbname' => 'blog', 'use
 $action = empty($_GET['action']) ? 'auth' : $_GET['action'];
 
 $routes = [
-    'auth' => '\Blog\Classes\Auth',
-    'posts' => '\Blog\Classes\Posts',
-    'del' => '\Blog\Classes\Delete',
-    'single' => '\Blog\Classes\Single',
-    'exit' => '\Blog\Classes\Bye'
+    'auth'   => '\Blog\Classes\Auth',
+    'exit'   => '\Blog\Classes\Auth',
+    'posts'  => '\Blog\Classes\Posts',
+    'single' => '\Blog\Classes\Posts',
+    'del'    => '\Blog\Classes\Posts'
 ];
 
 $router = new Classes\Router($connect, $action, $routes);
 $router->handler();
-
-var_dump($_SESSION);

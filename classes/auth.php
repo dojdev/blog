@@ -46,16 +46,19 @@ class Auth extends Controller
 
                 $_SESSION['user'] = $loginUser;
 
-                if($loginUser){
+                if(!empty($_SESSION['user'])){
                     header('location: /?action=posts');
-                } else{
-                    header('location: /?action=auth');
                 }
 
             }
 
         }
 
+    }
+
+    public function getExit(){
+        session_destroy();
+        header('location: /?action=auth');
     }
 
 }
