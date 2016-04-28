@@ -10,6 +10,9 @@ class Posts extends Controller{
     }
 
     public function getPosts(){
+        if (empty($_SESSION['user'])) {
+            header("location: /?action=auth");
+        }
         echo \Blog\Functions\template('templates/addForm.php');
 
         $pagin = $this->pdo->query(
@@ -57,6 +60,7 @@ class Posts extends Controller{
         };
 
     }
+
     public function postPosts(){
         if (!empty($_POST['title']) && !empty($_POST['content'])) {
             $write = $this->pdo->query("INSERT INTO `posts` SET `title`='{$_POST['title']}', `content`='{$_POST['content']}', `date`=NOW(), `user_id`=0");

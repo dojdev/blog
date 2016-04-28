@@ -6,7 +6,7 @@ abstract class Controller
     {
         $method = strtolower($method);
         $class_name = ucfirst($action);
-        $functon_name = "{$method}{$class_name}";
-        return $this->{$functon_name}();
+        $function_name = "{$method}{$class_name}";
+        return $this->{$function_name}();
     }
 }

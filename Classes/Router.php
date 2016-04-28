@@ -6,7 +6,7 @@ class Router
     private $action;
     private $routes;
 
-    public function __construct($connect, $action = 'home', $routes = [])
+    public function __construct($connect, $action = 'posts', $routes = [])
     {
         $this->connect = $connect;
         $this->action = $action;

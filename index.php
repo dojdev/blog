@@ -1,6 +1,4 @@
-<?php
-
-namespace Blog;
+<?php namespace Blog;
 
 require 'vendor/autoload.php';
 
@@ -11,7 +9,6 @@ session_start();
 echo Functions\template('templates/header.php');
 
 $connect = Functions\connection(['host' => 'localhost', 'dbname' => 'blog', 'user' => 'root', 'password' => 'vagrant', 'encoding' => 'utf8']);
-//var_dump($_GET);
 
 $action = empty($_GET['action']) ? 'auth' : $_GET['action'];
 
@@ -25,3 +22,5 @@ $routes = [
 
 $router = new Classes\Router($connect, $action, $routes);
 $router->handler();
+
+var_dump($_SESSION);
