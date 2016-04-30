@@ -6,13 +6,13 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();
 
-echo Functions\template('templates/header.php');
-
 $connect = Functions\connection(['host' => 'localhost', 'dbname' => 'blog', 'user' => 'root', 'password' => 'vagrant', 'encoding' => 'utf8']);
 
-$action = empty($_GET['action']) ? 'auth' : $_GET['action'];
+$loader  = new \Twig_Loader_Filesystem('templates');
+$twig    = new \Twig_Environment($loader, array());
+$action  = empty($_GET['action']) ? 'auth' : $_GET['action'];
 
-$routes = [
+$routes  = [
     'auth'   => '\Blog\Classes\Auth',
     'exit'   => '\Blog\Classes\Auth',
     'posts'  => '\Blog\Classes\Posts',
@@ -20,5 +20,5 @@ $routes = [
     'del'    => '\Blog\Classes\Posts'
 ];
 
-$router = new Classes\Router($connect, $action, $routes);
+$router  = new Classes\Router($connect, $action, $routes, $twig);
 $router->handler();

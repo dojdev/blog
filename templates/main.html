@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Simple blog</title>
+        <title>Simple blog {{ pagetitle }}</title>
         <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/stylesheet.css">
         <script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
@@ -10,3 +10,8 @@
         <script src="assets/js/main.js"></script>
     </head>
 <body>
+
+{% block main %} {% endblock %}
+
+</body>
+</html>

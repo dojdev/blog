@@ -5,9 +5,10 @@ class Posts extends Controller
 
     private $pdo;
 
-    public function __construct($pdo)
+    public function __construct($pdo, $twig)
     {
         $this->pdo = $pdo;
+        $this->twig = $twig;
     }
 
     public function getPosts()
@@ -15,7 +16,19 @@ class Posts extends Controller
         if (empty($_SESSION['user'])) {
             header("location: /?action=auth");
         }
-        echo \Blog\Functions\template('templates/addForm.php');
+
+        $template = $this->twig->loadTemplate('welcomeMessage.html');
+
+        echo $template->render(array(
+            'login' => $_SESSION['user']['login']
+        ));
+
+        $template = $this->twig->loadTemplate('addForm.html');
+
+        echo $template->render(array(
+            'user' => $_SESSION['user']['login'],
+            'pagetitle' => 'posts'
+        ));
 
         $pagin = $this->pdo->query(
             "SELECT count(*) FROM `posts`"
@@ -36,23 +49,33 @@ class Posts extends Controller
 
         echo '<div class="container text-center">';
 
-            for ($i = 1; $i <= $num_pages; $i++) {
-                if ($i - 1 == $page) {
-                    echo \Blog\Functions\template('templates/pagin.php',[
-                        'i' => $i,
-                        'color' => 'f44',
-                        'events' => 'none',
-                        'fw' => 'bold'
-                    ]);
-                } else {
-                    echo \Blog\Functions\template('templates/pagin.php',[
-                        'i' => $i,
-                        'color' => '000',
-                        'events' => 'auto',
-                        'fw' => 'normal'
-                    ]);
-                }
+        for ($i = 1; $i <= $num_pages; $i++) {
+            if ($i - 1 == $page) {
+
+                $template = $this->twig->loadTemplate('pagin.html');
+
+                echo $template->render(array(
+                    'i' => $i,
+                    'color' => 'f44',
+                    'events' => 'none',
+                    'fw' => 'bold',
+                    'link' => $_SERVER['PHP_SELF']
+                ));
+
+            } else {
+
+                $template = $this->twig->loadTemplate('pagin.html');
+
+                echo $template->render(array(
+                    'i' => $i,
+                    'color' => '000',
+                    'events' => 'auto',
+                    'fw' => 'normal',
+                    'link' => $_SERVER['PHP_SELF']
+                ));
+
             }
+        }
 
         echo '</div>';
 
@@ -60,13 +83,17 @@ class Posts extends Controller
         $content = $statement->fetchAll(\PDO::FETCH_ASSOC);
         $url = substr($_SERVER['REQUEST_URI'], 1);
         foreach ($content as $value) {
-            echo \Blog\Functions\template('templates/Posts.php', [
+
+            $template = $this->twig->loadTemplate('posts.html');
+
+            echo $template->render(array(
                 'title' => htmlspecialchars($value['title']),
                 'content' => htmlspecialchars($value['content']),
                 'date' => $value['date'],
                 'author' => $value['user_id'],
                 'post_id' => $value['id']
-            ]);
+            ));
+
         };
 
     }
@@ -98,19 +125,23 @@ class Posts extends Controller
         $content = $statement->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($content as $value) {
 
-            echo \Blog\Functions\template('templates/editForm.php', [
+            $template = $this->twig->loadTemplate('editForm.html');
+
+            echo $template->render(array(
                 'title' => htmlspecialchars($value['title']),
                 'content' => htmlspecialchars($value['content']),
                 'post_id' => $value['id']
-            ]);
+            ));
 
-            echo \Blog\Functions\template('templates/Posts.php', [
+            $template = $this->twig->loadTemplate('posts.html');
+
+            echo $template->render(array(
                 'title' => htmlspecialchars($value['title']),
                 'content' => htmlspecialchars($value['content']),
                 'date' => $value['date'],
                 'author' => $value['user_id'],
                 'post_id' => $value['id']
-            ]);
+            ));
 
         }
 

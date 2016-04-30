@@ -2,17 +2,22 @@
 
 class Auth extends Controller
 {
-    private $pdo;
+    protected $pdo;
+    protected $twig;
 
-    public function __construct($pdo)
+    public function __construct($pdo, $twig)
     {
-        $this->pdo = $pdo;
+        $this->pdo  = $pdo;
+        $this->twig = $twig;
     }
 
     public function getAuth()
     {
+        $template = $this->twig->loadTemplate('loginForm.html');
 
-        echo \Blog\Functions\template('templates/loginForm.php');
+        echo $template->render(array(
+            'pagetitle'=>'auth'
+        ));
 
         if(!empty($_SESSION['user'])){
             header('location: /?action=posts');
@@ -27,7 +32,6 @@ class Auth extends Controller
         }
 
         if (!empty($_POST['login']) && !empty($_POST['password'])) {
-
 
             $login = !empty($_POST['login']) ? trim($_POST['login']) : null;
             $password = !empty($_POST['password']) ? md5(trim($_POST['password'])) : null;
